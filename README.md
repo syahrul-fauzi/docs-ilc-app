@@ -30,12 +30,13 @@ Silakan akses dokumen berikut untuk detail teknis dan standar operasional:
 - [**02-technical-architecture**](docs/02-technical-architecture/README.md): Diagram sistem dan struktur data.
 - [**03-mobile-implementation**](docs/03-mobile-implementation/README.md): Standar pengembangan UI/UX dengan Expo.
 - [**05-features**](docs/05-features/README.md): Dokumentasi detail fitur-fitur utama.
-  - [01-AI Legal Engine](docs/05-features/01-ai-legal-engine.md)
-  - [02-Community Hub](docs/05-features/02-community-hub.md)
-  - [03-Legal Tools](docs/05-features/03-legal-tools.md)
-  - [04-Billing & Subscription](docs/05-features/04-billing-subscription.md)
-  - [05-Notification System](docs/05-features/05-notification-system.md)
+  - [01-AI Legal Engine](docs/05-features/F01_AI_Search_Answer.md)
+  - [02-Consultation Workflow](docs/05-features/F02_Consultation_Workflow.md)
+  - [03-RealTime Chat](docs/05-features/F03_RealTime_Chat.md)
+  - [04-Document Automation](docs/05-features/F04_Document_Automation.md)
+  - [05-Notification System](docs/05-features/F05_Notifications.md)
   - [06-Generative UI & Collaboration](docs/05-features/06-generative-ui-collaboration.md)
+  - [07-Community Hub](docs/05-features/F07_Community_Hub.md)
 - [**11-playbooks**](docs/11-playbooks/): Panduan operasional ("How-to") dan pemecahan masalah.
   - [**Arsitektur Layanan**](docs/11-playbooks/01-service-architecture.md): Detail implementasi backend-for-frontend.
   - [**Fixing Navigation**](docs/11-playbooks/navigation_fix.md): Troubleshooting React Navigation.

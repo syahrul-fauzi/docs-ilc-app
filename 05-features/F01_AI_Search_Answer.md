@@ -27,45 +27,47 @@ Fitur pencarian semantik yang memungkinkan pengguna mengajukan pertanyaan hukum 
   - **Actionable**: Setiap jawaban harus menyertakan langkah nyata (e.g., "Hubungkan dengan pengacara" atau "Cek sertifikat ke BPN").
 - **Local Context Integration**: Menyisipkan konteks hukum spesifik Indonesia (UU, Perda, Yurisprudensi) ke dalam prompt sistem.
 
-### 3. Reasoning Transparency (The "2 Logs" Component)
-- **Concept**: Menampilkan proses berpikir AI secara transparan untuk meningkatkan kepercayaan pengguna.
-- **Component**: `ReasoningAccordion`
-- **Flow**:
-  1.  **Orchestrator**: Menganalisis intent pengguna dan merencanakan strategi pencarian.
-  2.  **Researcher**: Melakukan pencarian mendalam pada database hukum (UU, Putusan, Artikel).
-  3.  **Analyst**: Mensintesis temuan menjadi jawaban yang koheren dan actionable.
+### 3. Reasoning Transparency (The "Reasoning Path")
+- **Concept**: Menampilkan proses berpikir AI secara transparan untuk meningkatkan kepercayaan pengguna melalui mekanisme orkestrasi agen.
+- **Component**: `AgentOrchestrator` reasoning path.
+- **Flow (Agentic Phases)**:
+  1.  **Memory Retrieval**: Mencari pengalaman relevan dari interaksi sebelumnya untuk memperkaya konteks.
+  2.  **Research**: Melakukan penelusuran pada database hukum dan sumber resmi (JDIH, MA, dsb).
+  3.  **Analysis**: Mensintesis temuan menjadi jawaban yang koheren, akurat, dan sesuai dengan *Tone of Voice*.
+  4.  **UI Generation**: Menyusun draft aksi (generative UI) untuk membantu pengguna mengambil langkah selanjutnya.
 - **UI Implementation**:
-  - Accordion yang dapat dibuka/tutup untuk melihat detail setiap langkah.
-  - Indikator status (Loading, Completed, Error) untuk setiap langkah.
-  - Penggunaan warna dan ikon yang intuitif untuk membedakan peran (Orchestrator, Researcher, Analyst).
+  - `ReasoningAccordion` untuk menampilkan detail langkah orkestrasi.
+  - Indikator status (Memory found, Sources found, Analysis complete) untuk setiap fase.
 
 ### 4. Agentic Continuous Learning (Memory Phase)
 - **Concept**: Sistem belajar dari interaksi sebelumnya untuk meningkatkan akurasi dan efisiensi orkestrasi di masa depan.
-- **Components**: `MemoryService` & `AgentOrchestrator`.
+- **Components**: `MemoryService` (Singleton) & `AgentOrchestrator`.
 - **Workflow**:
-  1. **Memory Retrieval**: Sebelum memulai riset baru, Orchestrator mencari pengalaman serupa di memori (MMKV/SecureStore).
-  2. **Context Enrichment**: Jika ditemukan, Orchestrator menggunakan insight dari pengalaman sebelumnya untuk mempercepat analisis.
-  3. **Feedback Loop**: Setelah tugas selesai, pengguna dapat memberikan feedback (rating 1-5). Feedback ini disimpan kembali ke memori untuk koreksi di masa depan.
-  4. **Self-Correction**: Jika skor kepercayaan rendah (< threshold), sistem akan secara otomatis menambahkan label peringatan dan mencoba strategi alternatif.
+  1. **Memory Retrieval**: Sebelum memulai riset baru, `AgentOrchestrator` mencari pengalaman serupa di memori melalui `MemoryService`.
+  2. **Context Enrichment**: Menggunakan insight dari pengalaman sebelumnya (jika ditemukan) untuk mempercepat proses penalaran.
+  3. **Experience Storage**: Setelah tugas selesai, orkestrator menyimpan hasil dan metrik performa kembali ke `MemoryService` sebagai pengalaman baru.
+  4. **Self-Correction**: Mekanisme fallback otomatis jika skor evaluasi diri rendah (< 0.7) atau terdeteksi anomali.
 
 ## 📱 UI/UX States
-- **Empty State**: Menampilkan saran pertanyaan populer dan riwayat pencarian terakhir (cached).
-- **Loading State**: Animasi "AI is thinking..." dengan shimmer effect.
-- **Success State**: Jawaban markdown + Source Badges + Direct Links + Follow-up input.
+- **Empty State**: Menampilkan saran pertanyaan populer dan riwayat pencarian terakhir.
+- **Loading State**: Animasi "AI is thinking..." dengan shimmer effect dan update reasoning progress.
+- **Success State**: Jawaban markdown + Source Badges + Direct Links + Follow-up input + Generative UI Draft.
 - **Error State**: Graceful fallback ke pencarian statis atau FAQ populer jika layanan AI terhambat.
 
 ## ⚙️ Spesifikasi Teknis
-- **Endpoint**: `POST /v1/ai/ask`
-- **Logic Service**: `services/ai.ts` (Implementasi `calculateTrustSignals`).
-- **State Management**: React Context (`CopilotContext.tsx`) & Recoil (history & context).
+- **Logic Services**:
+  - `AgentOrchestrator.ts`: Orkestrasi multi-agen dan manajemen fase reasoning.
+  - `TrustSignalService.ts`: Perhitungan skor kepercayaan, verifikasi sumber resmi, dan skor kebaruan (recency).
+  - `MemoryService.ts`: Manajemen memori jangka panjang untuk pembelajaran kontinu.
+- **State Management**: React Context (`CopilotContext.tsx`) & Recoil (auth & global settings).
 - **UI Performance**: 
-  - Memoized `MessageBubble` & `TrustBadge` untuk efisiensi rendering.
-  - `useCallback` pada handler pencarian untuk stabilitas referensi.
-- **Caching**: Local caching (SQLite/MMKV) untuk pencarian berulang.
-- **Analytics**: Event `ai_search_query`, `ai_answer_shared_to_community`.
+  - Memoized components pada feed chat untuk efisiensi rendering.
+  - Async handling untuk operasi memori guna menghindari pemblokiran UI thread.
+- **Analytics**: Event `ai_agent_performance`, `screen_view`, `conversion_event`.
 
 ## ✅ Acceptance Criteria
-- [ ] AI merespon dalam waktu < 3 detik (Target SLO).
-- [ ] Menampilkan referensi hukum dengan tautan langsung ke pasal terkait.
-- [ ] Mendukung tindak lanjut pertanyaan (*follow-up*) dalam satu sesi.
-- [ ] Menyertakan *disclaimer* hukum otomatis pada setiap jawaban.
+- [x] AI merespon dengan proses orkestrasi transparan (Reasoning Path).
+- [x] Menampilkan indikator kepercayaan (Trust Signals) berbasis sumber resmi.
+- [x] Implementasi memori kontinu untuk pembelajaran sistem (Memory Retrieval & Storage).
+- [x] Mendukung tindak lanjut pertanyaan (*follow-up*) dalam satu sesi.
+- [x] Menyertakan *disclaimer* hukum otomatis pada setiap jawaban.
