@@ -38,7 +38,7 @@ graph TD
 - **Komponen**: Atomic Design (Atoms, Molecules, Organisms) di folder `components/`.
 
 ### 2.2 State Management Layer
-- **Global State**: Recoil / React Context untuk data yang jarang berubah (User Profile, Theme).
+- **Global State**: React Context API untuk data yang jarang berubah (User Profile, Theme).
 - **Server State**: React Query (TanStack Query) direkomendasikan untuk caching data API.
 - **Local State**: `useState` dan `useReducer` untuk logika komponen lokal.
 

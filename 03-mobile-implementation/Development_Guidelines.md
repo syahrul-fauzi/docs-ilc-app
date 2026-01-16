@@ -28,8 +28,8 @@ Kami menggunakan kombinasi **Feature-Sliced Design (FSD)** dan **Domain-Driven D
 - Gunakan `platform-specific` styling hanya jika diperlukan (`ios:`, `android:`).
 
 ### 2.3 State Management
-- **Global State**: Recoil (untuk data lintas fitur).
-- **Feature State**: React Context (untuk data di dalam satu fitur).
+- **Global State**: React Context yang didefinisikan di `src/shared/context/` atau `src/libs/` (seperti AuthContext, SettingsContext).
+- **Feature State**: React Context di dalam folder `model/` masing-masing fitur.
 - **Local State**: `useState` / `useReducer`.
 
 ---

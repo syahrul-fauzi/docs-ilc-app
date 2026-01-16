@@ -26,7 +26,7 @@ graph TD
 ### Mechanism Dependency Management
 - **Strict Isolation**: Fitur tidak boleh mengimpor langsung dari fitur lain.
 - **Public API**: Setiap folder fitur wajib memiliki `index.ts` yang mengekspor hanya apa yang diperlukan oleh dunia luar.
-- **Cross-Feature Communication**: Gunakan Event Bus atau Shared State (Recoil) jika dua fitur perlu berinteraksi.
+- **Cross-Feature Communication**: Gunakan Event Bus atau Shared State (Context API) jika dua fitur perlu berinteraksi.
 
 ### Strategi Code Sharing
 - Gunakan folder `src/shared` untuk komponen UI yang dipakai di lebih dari satu fitur.

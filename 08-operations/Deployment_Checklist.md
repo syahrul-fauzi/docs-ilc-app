@@ -40,7 +40,7 @@ Checklist ini dirancang untuk memastikan deployment **ILC-APP** berjalan lancar,
 - [ ] **Permissions**: Deskripsi izin (Camera, Location) jelas dan sopan.
 
 ### 🔐 Environment Variables
-- [ ] **Production API URL**: Point ke server production (`https://api.ilc-app.com`).
+- [ ] **Production API URL**: Point ke server production (`https://api.indonesialawyersclub.id`).
 - [ ] **Analytics Keys**: Mixpanel/Google Analytics token untuk production.
 - [ ] **Sentry DSN**: Untuk error tracking production.
 

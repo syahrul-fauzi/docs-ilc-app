@@ -59,7 +59,7 @@ Fitur pencarian semantik yang memungkinkan pengguna mengajukan pertanyaan hukum 
   - `AgentOrchestrator.ts`: Orkestrasi multi-agen dan manajemen fase reasoning.
   - `TrustSignalService.ts`: Perhitungan skor kepercayaan, verifikasi sumber resmi, dan skor kebaruan (recency).
   - `MemoryService.ts`: Manajemen memori jangka panjang untuk pembelajaran kontinu.
-- **State Management**: React Context (`CopilotContext.tsx`) & Recoil (auth & global settings).
+- **State Management**: React Context API (Modular & Scalable).
 - **UI Performance**: 
   - Memoized components pada feed chat untuk efisiensi rendering.
   - Async handling untuk operasi memori guna menghindari pemblokiran UI thread.
