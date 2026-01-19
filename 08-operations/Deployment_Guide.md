@@ -33,7 +33,7 @@ Automatic scaling based on the 1000 RPS benchmark.
 - **Min Replicas**: 3.
 - **Max Replicas**: 20.
 - **Pod Disruption Budget**: Ensures at least 2 pods are available during updates.
-- **Manifests**: `infrastructure/k8s/hpa.yaml`, `infrastructure/k8s/pdb.yaml`
+- **Manifests**: `infra/k8s/hpa.yaml`, `infra/k8s/pdb.yaml`
 
 ## 8. Rollback Procedures
 - **AI Gateway**: `kubectl rollout undo deployment/ai-gateway`

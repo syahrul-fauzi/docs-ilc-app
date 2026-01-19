@@ -10,16 +10,26 @@ Dokumen ini mendefinisikan standar visual dan komponen UI untuk **ILC-APP**, mem
 Warna-warna ini didefinisikan dalam `global.css` dan `constants/Colors.ts`.
 
 ### 1. Primary Colors
-| Token | Hex | Name | Usage |
-| :--- | :--- | :--- | :--- |
-| `primary` | `#1E3A8A` | Indigo Blue | Brand identity, buttons, active states. |
-| `primary-foreground` | `#F8FAFC` | Slate 50 | Text on primary backgrounds. |
+| Token | Hex (Light) | Hex (Dark) | Name | Usage |
+| :--- | :--- | :--- | :--- | :--- |
+| `primary` | `#1E3A8A` | `#60A5FA` | Blue | Brand identity, buttons, active states. |
+| `primary-foreground` | `#F8FAFC` | `#030712` | Slate 50/950 | Text on primary backgrounds. |
 
 ### 2. Accent Colors
-| Token | Hex | Name | Usage |
-| :--- | :--- | :--- | :--- |
-| `accent` | `#059669` | Emerald Green | Trust indicators, success states, highlights. |
-| `accent-foreground` | `#FFFFFF` | White | Text on accent backgrounds. |
+| Token | Hex (Light) | Hex (Dark) | Name | Usage |
+| :--- | :--- | :--- | :--- | :--- |
+| `accent` | `#059669` | `#12D38A` | Emerald Green | Trust indicators, success states, highlights. |
+| `accent-foreground` | `#FFFFFF` | `#030712` | Dark Slate | Text on accent backgrounds (WCAG 2.1). |
+
+### 3. Feedback Colors (WCAG 2.1 Compliant)
+| Token | Hex (Light) | Hex (Dark) | Name | Usage |
+| :--- | :--- | :--- | :--- | :--- |
+| `success` | `#16A34A` | `#3BE87E` | Emerald/Green | Success messages, positive indicators. |
+| `success-foreground` | `#FFFFFF` | `#003308` | Dark Green | Text on success backgrounds. |
+| `warning` | `#F59E0B` | `#F9D639` | Amber/Yellow | Warning alerts, caution indicators. |
+| `warning-foreground` | `#311F03` | `#311F03` | Dark Brown | Text on warning backgrounds. |
+| `destructive` | `#DC2626` | `#F33F3F` | Red | Errors, destructive actions, alerts. |
+| `destructive-foreground` | `#FFFFFF` | `#030712` | Dark Slate | Text on destructive backgrounds. |
 
 ### 3. Neutral Colors
 | Token | Hex | Name | Usage |
@@ -60,6 +70,13 @@ Menggunakan font **Sans Serif Human-friendly** (System Default atau Inter).
 - **Background:** `bg-background` atau `bg-primary` (untuk profil/brand focus).
 - **Text:** `text-foreground` atau `text-primary-foreground`.
 - **Icons:** Menggunakan `IconSymbol` dengan warna `tint`.
+
+### 4. Trust Signals (Ultra-Minimalist Approach)
+- **Container:** `flex-row justify-center items-center gap-8 mt-12 w-full py-2`.
+- **Dividers:** Circular dot dividers using `w-1 h-1 rounded-full bg-border/40`.
+- **Typography:** `text-[10px] font-bold text-muted-foreground uppercase tracking-[1.5px]`.
+- **Iconography:** `IconSymbol` with `size={12}` and monochromatic `muted-foreground` color.
+- **Goal:** Memberikan jaminan keamanan dan kecepatan secara subliminal tanpa mengganggu fokus utama pada area kueri.
 
 ---
 

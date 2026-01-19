@@ -49,9 +49,10 @@ Endpoint utama untuk mengajukan pertanyaan hukum ke AI.
 ### Data Structure
 ```typescript
 interface AgentReasoning {
-  role: 'researcher' | 'analyst' | 'drafter' | 'orchestrator';
+  agentName: string;
   thought: string;
   action?: string;
+  timestamp: number;
 }
 ```
 

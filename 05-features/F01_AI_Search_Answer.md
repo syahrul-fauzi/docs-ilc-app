@@ -33,8 +33,9 @@ Fitur pencarian semantik yang memungkinkan pengguna mengajukan pertanyaan hukum 
 - **Flow (Agentic Phases)**:
   1.  **Memory Retrieval**: Mencari pengalaman relevan dari interaksi sebelumnya untuk memperkaya konteks.
   2.  **Research**: Melakukan penelusuran pada database hukum dan sumber resmi (JDIH, MA, dsb).
-  3.  **Analysis**: Mensintesis temuan menjadi jawaban yang koheren, akurat, dan sesuai dengan *Tone of Voice*.
-  4.  **UI Generation**: Menyusun draft aksi (generative UI) untuk membantu pengguna mengambil langkah selanjutnya.
+  3.  **Domain & Persona Awareness**: Mengidentifikasi domain hukum (Pidana, Perdata, dll) dan menyesuaikan penalaran berdasarkan persona pengguna.
+  4.  **Analysis**: Mensintesis temuan menjadi jawaban yang koheren, akurat, dan sesuai dengan *Tone of Voice*.
+  5.  **UI Generation**: Menyusun draft aksi (generative UI) untuk membantu pengguna mengambil langkah selanjutnya.
 - **UI Implementation**:
   - `ReasoningAccordion` untuk menampilkan detail langkah orkestrasi.
   - Indikator status (Memory found, Sources found, Analysis complete) untuk setiap fase.
@@ -47,6 +48,11 @@ Fitur pencarian semantik yang memungkinkan pengguna mengajukan pertanyaan hukum 
   2. **Context Enrichment**: Menggunakan insight dari pengalaman sebelumnya (jika ditemukan) untuk mempercepat proses penalaran.
   3. **Experience Storage**: Setelah tugas selesai, orkestrator menyimpan hasil dan metrik performa kembali ke `MemoryService` sebagai pengalaman baru.
   4. **Self-Correction**: Mekanisme fallback otomatis jika skor evaluasi diri rendah (< 0.7) atau terdeteksi anomali.
+
+### 5. Security & Privacy (UU PDP Compliance)
+- **PII Masking**: Semua data sensitif (NIK, NPWP, Email, Nomor Telepon, Rekening Bank, Tanggal Lahir) disamarkan secara otomatis sebelum dikirim ke provider AI.
+- **Data Residency**: Memastikan data sensitif tidak tersimpan secara permanen di log provider AI pihak ketiga.
+- **De-masking**: Proses pengembalian data asli (unmasking) dilakukan hanya di sisi klien (device pengguna) untuk menjaga privasi.
 
 ## 📱 UI/UX States
 - **Empty State**: Menampilkan saran pertanyaan populer dan riwayat pencarian terakhir.

@@ -2,32 +2,17 @@
 
 Selamat datang di repositori **ILC-APP**, aplikasi mobile/web berbasis AI yang dirancang untuk merevolusi akses hukum di Indonesia.
 
-## 📚 Dokumentasi
-Dokumentasi lengkap proyek ini disusun secara sistematis untuk memudahkan pengembangan dan pemeliharaan.
+## 📚 Dokumentasi Terpadu
+Dokumentasi proyek ini adalah bagian dari ekosistem **Lawyers Hub**. Silakan merujuk pada:
 
-### 🚀 Mulai Cepat (Quick Start)
-1. **Prasyarat**: Node.js v18+, npm/yarn.
-2. **Instalasi**:
-   ```bash
-   npm install
-   ```
-3. **Menjalankan Development Server**:
-   ```bash
-   npx expo start
-   ```
-4. **Testing**:
-   ```bash
-   npm test
-   ```
+- [**🌐 Strategi Ecosystem-First**](00-overview/Ecosystem_First_Strategy.md): Visi integrasi ILC & Lawyers Hub.
+- [**🏗️ Arsitektur Global**](../../docs/01_architecture/README.md): Desain backend bersama dan multi-tenancy.
+- [**🛡️ Kepatuhan UU PDP**](../../docs/07_compliance_and_audit/README.md): Standar keamanan data ekosistem.
 
-### 📖 Panduan Lengkap
-Silakan akses dokumen berikut untuk detail teknis dan standar operasional:
-
-- [**📜 Aturan Proyek Utama (Project Rules)**](../.trae/rules/project_rules.md): Standar pengembangan, kualitas, dan operasional resmi.
-- [**🏗️ Arsitektur Hybrid FSD-DDD**](../.trae/rancangan%20implementasi%20FSD-DDD-Hybrid%20versi%20“next-generation”.md): Panduan struktur kode generasi terbaru.
-- [**00-overview**](docs/00-overview/README.md): Visi, Misi, dan Cakupan Proyek.
+### 📖 Panduan Spesifik ILC
+- [**00-overview**](docs/00-overview/README.md): Visi, Misi, dan Cakupan Proyek ILC.
 - [**01-product**](docs/01-product/README.md): Product Requirements Document (PRD).
-- [**02-technical-architecture**](docs/02-technical-architecture/README.md): Diagram sistem dan struktur data.
+- [**02-technical-architecture**](docs/02-technical-architecture/README.md): Diagram sistem mobile dan struktur data.
 - [**03-mobile-implementation**](docs/03-mobile-implementation/README.md): Standar pengembangan UI/UX dengan Expo.
 - [**05-features**](docs/05-features/README.md): Dokumentasi detail fitur-fitur utama.
   - [01-AI Legal Engine](docs/05-features/F01_AI_Search_Answer.md)
@@ -115,6 +100,10 @@ Sistem mengadopsi siklus hidup otonom untuk penyelesaian masalah hukum:
 2. **Inward Dependency**: Layer yang lebih luar (App/Pages/Features) bergantung pada layer yang lebih dalam (Entities/Shared), bukan sebaliknya.
 3. **Ubiquitous Language**: Menggunakan terminologi hukum yang konsisten (misal: `LegalInquiry`, `TrustSignals`).
 4. **Agentic Workflow**: Mendukung orkestrasi agen AI secara otonom di layer domain.
+5. **Standardized UI Elements**: Semua elemen interaktif (Button, Pressable) menggunakan komponen bersama `src/shared/components/ui/button.tsx` untuk konsistensi haptics, animasi, dan aksesibilitas.
+6. **SOLID Service Contracts**: Layanan inti (Auth, Analytics, Notification, Billing, AI) diimplementasikan menggunakan antarmuka (interfaces) untuk memfasilitasi pengujian, fleksibilitas, dan skalabilitas.
+7. **Integrated Trust Signals**: Integrasi *social proof* real-time (Recent Activity, Platform Trust Bar, Testimonials) dan indikator keamanan di seluruh alur kerja untuk membangun kepercayaan pengguna.
+8. **Advanced Document Scanning**: Pemindaian dokumen hukum berbasis AI dengan enkripsi selama proses dan analisis mendalam menggunakan orkestrasi multi-agen.
 
 Untuk detail lebih lanjut mengenai implementasi, silakan baca [Rancangan Implementasi FSD-DDD-Hybrid](../.trae/rancangan%20implementasi%20FSD-DDD-Hybrid%20versi%20“next-generation”.md).
 
@@ -145,4 +134,4 @@ Editor kolaboratif (Yjs) untuk menyusun dokumen hukum secara real-time.
 - **Compliance**: Mengikuti standar perlindungan data pribadi (UU PDP).
 
 ---
-*Dibuat dengan ❤️ oleh Tim Smart AI Lawyers Hub*
+*Dikelola oleh Tim Lawyers Hub - Terakhir Diperbarui: 2026-01-18*
